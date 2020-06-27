@@ -1,0 +1,31 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "tsc && node dist/server.js",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/jest": "^26.0.0",
+    "@types/uuid": "^8.0.0",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.1",
+    "tslint": "^5.20.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/mongoose": "^5.7.28",
+    "dotenv": "^8.2.0",
+    "envalid": "^6.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.20",
+    "uuidv4": "^6.1.0"
+  }
+}
