@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-import Log from "./register";
+import Log from "./log";
 
 const logSchema = new mongoose.Schema({
     username: { type: String, required: true },
