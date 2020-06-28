@@ -3,8 +3,8 @@ import { v4 as uuid } from 'uuid';
 
 import userModel from '../model/user.model'
 import User from '../model/user';
-import logModel from '../model/register.model';
-import Log from '../model/register';
+import logModel from '../model/log.model';
+import Log from '../model/log';
 
 class UserController {
     private path: string;
