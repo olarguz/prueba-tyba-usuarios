@@ -1,6 +1,6 @@
 # Apicacion de registro de usuarios.
 
-Esta aplicacion se hace como una prueba de backend para Tyba.
+Esta aplicación se hace como una prueba de backend para Tyba.
 
 ## Prerequisitos
 
@@ -95,7 +95,7 @@ Donde el valor de **username**, **pass** deben estar registrados previamente en 
 ### Consulta de restaurantes por ciudad.
 
 ```
-http://[url]:[port]/user/restaurants
+http://{url:{port}/user/restaurants
 ```
 
 Este método se consume por POST y en el body se
@@ -106,18 +106,21 @@ Este endpoint es usado para que se pueda ver el histórico de operaciones realiz
 La firma del endpoint se presenta a continuacion:
 
 ```
-http://[url]:[port]/user/history/:username
+http://{url}:{port}/user/history/:username
 ```
 
 Este método se consume por **GET**, la variable **username** debe ser reempladad por un usuario válido, en caso que se pase un usuario no valido la respuesta obtenida contendrá un valor de un arreglo vació en el campo data.
 
 ## Ejecucion
 
-Para ejecutar la aplicación en la maqina de forma local.
+Recuerde que antes de ejecutar la aplicación debe descargar o genenera el archivo **.env**.
+
+Para ejecutar la aplicación en la máquina de forma local.
 
 ````bash
 git clone git@github:olarguz/prueba-tyba-usuarios.git
 cd prueba-tyba-usuarios
+cp {ruta-de-descarga}/.env .
 npm run start
 ````
 
@@ -126,6 +129,7 @@ Para ejecutar la aplicación en docker
 ````bash
 git clone git@github:olarguz/prueba-tyba-usuarios.git
 cd prueba-tyba-usuarios
+cp {ruta-de-descarga}/.env .
 npm run build
 docker build -t {nombre-app}:{version} . -f docker/Dockerfile
 docker run -p {puerto}:{puerto} -d {nombre-app}:{version}

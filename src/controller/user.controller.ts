@@ -87,6 +87,7 @@ class UserController {
         userModel.find(userData)
             .then((users: Array<User>) => {
                 if (users.length !== 0) {
+                    new logModel({ username: userData.username, log: `Usuario consulto por los restaurantes de la ciudad ${city}` }).save();
                     response.json({ status: 'OK', data: users.length });
                 } else {
                     response.json({ status: 'ERR', data: `User ${userData.username} is not authorized.` })

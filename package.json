@@ -7,10 +7,14 @@
     "build" : "tsc",
     "test": "jest"
   },
-  "author": "",
+  "author": "Olmedo Arcila Guzman",
   "license": "ISC",
-  "keywords": [],
-  "description": "",
+  "keywords": ["Tyba", "prueba", "backend-test"],
+  "description": "Esta aplicacion se hace como una prueba de backend para Tyba.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olarguz/prueba-tyba-usuarios.git"
+  },
   "devDependencies": {
     "@types/express": "^4.17.6",
     "@types/jest": "^26.0.0",
