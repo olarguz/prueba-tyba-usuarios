@@ -1,7 +1,7 @@
-import App from './application/app';
 import express, { Router } from 'express';
 import 'dotenv/config';
 
+import App from './application/app';
 import Credentials from './model/credentials';
 import UserController from './controller/user.controller';
 import { validate } from './utils/validator';
