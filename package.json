@@ -4,12 +4,16 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "tsc && node dist/server.js",
-    "build" : "tsc",
+    "build": "tsc",
     "test": "jest"
   },
   "author": "Olmedo Arcila Guzman",
   "license": "ISC",
-  "keywords": ["Tyba", "prueba", "backend-test"],
+  "keywords": [
+    "Tyba",
+    "prueba",
+    "backend-test"
+  ],
   "description": "Esta aplicacion se hace como una prueba de backend para Tyba.",
   "repository": {
     "type": "git",
@@ -31,6 +35,7 @@
     "envalid": "^6.0.2",
     "express": "^4.17.1",
     "mongoose": "^5.9.20",
+    "request-promise": "^4.2.5",
     "uuidv4": "^6.1.0"
   }
 }
