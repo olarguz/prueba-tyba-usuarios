@@ -2,7 +2,7 @@ import express, { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import userModel from '../model/user.model'
 import User from '../model/user';
-import logModel from '../model/register.controller';
+import logModel from '../model/register.model';
 import Log from '../model/register';
 
 class UserController {
@@ -74,7 +74,7 @@ class UserController {
     }
 
     logUserLogoutOk(user: User, response: express.Response) {
-        new logModel({ username: user.username, log: `Usuario logged in con token ${user.token}` }).save();
+        new logModel({ username: user.username, log: `Usuario logged out con token ${user.token}` }).save();
         this.updateUser(user, false, 'NONE');
         response.json({ status: 'OK', data: { value: `User ${user.username} logged out now.` } });
     }
