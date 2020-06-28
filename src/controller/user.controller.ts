@@ -5,13 +5,16 @@ import userModel from '../model/user.model'
 import User from '../model/user';
 import logModel from '../model/log.model';
 import Log from '../model/log';
+import RestaurantController from './restaurant.controller';
 
 class UserController {
     private path: string;
+    private restaurantController: RestaurantController;
     private router: Router;
 
-    constructor(path: string, router: Router) {
+    constructor(path: string, restaurantController: RestaurantController, router: Router) {
         this.path = path;
+        this.restaurantController = restaurantController;
         this.router = router;
 
         this.intializeRoutes();
@@ -112,7 +115,7 @@ class UserController {
 
     private logRestaurantsOk(user: any, city: string, response: express.Response) {
         new logModel({ username: user.username, log: `Usuario consulto por los restaurantes de la ciudad ${city}` }).save();
-        response.json({ status: 'OK', data: 'Lo que sea' });
+        this.restaurantController.findRestaurantByCity(city, response);
     }
 
     private logRestaurantsErr(user: any, city: string, response: express.Response) {

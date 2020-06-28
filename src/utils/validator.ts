@@ -1,4 +1,4 @@
-import { cleanEnv, str, port } from 'envalid';
+import { cleanEnv, str, port, url } from 'envalid';
 
 function validate(parameters: any) {
     let validator = {
@@ -7,9 +7,11 @@ function validate(parameters: any) {
         MONGO_DB: str(),
         MONGO_PATH: str(),
         MONGO_PARAMS: str(),
+        SERVER_HOST: url(),
+        API_KEY: str(),
         PORT: port()
     };
     cleanEnv(parameters, validator);
 }
 
-export {validate};
+export { validate };

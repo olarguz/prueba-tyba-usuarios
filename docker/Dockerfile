@@ -16,7 +16,7 @@ RUN mkdir utils
 COPY .env .
 COPY dist/server.js* ./
 COPY dist/application/app.js* application/
-COPY dist/controller/user.controller.js* controller/
+COPY dist/controller/*.js* controller/
 COPY dist/model/*.js* model/
 COPY dist/utils/*.js* utils/
 
