@@ -145,6 +145,8 @@ MONGO_PASSWORD  = passuser
 MONGO_DB        = database
 MONGO_PATH      = url del servidor de la base de datos
 MONGO_PARAMS    = parametros para conección con mongo
+SERVER_HOST     = url del servidor de ubicaciones
+API_KEY         = api key del servidor de ubicaciones
 PORT            = puerto del servicio {puerto}.
 ```
 
