@@ -5,16 +5,13 @@ import userModel from '../model/user.model'
 import User from '../model/user';
 import logModel from '../model/log.model';
 import Log from '../model/log';
-import RestaurantController from './restaurant.controller';
 
 class UserController {
     private path: string;
-    private restaurantController: RestaurantController;
     private router: Router;
 
-    constructor(path: string, restaurantController: RestaurantController, router: Router) {
+    constructor(path: string, router: Router) {
         this.path = path;
-        this.restaurantController = restaurantController;
         this.router = router;
 
         this.intializeRoutes();
@@ -24,7 +21,6 @@ class UserController {
         this.router.post(this.path.concat('/create'), this.createUser);
         this.router.post(this.path.concat('/login'), this.loginUser);
         this.router.post(this.path.concat('/logout'), this.logoutUser);
-        this.router.post(this.path.concat('/restaurants'), this.getRestaurantsByCity);
         this.router.get(this.path.concat('/history/:username'), this.getUserHistory);
     }
 
@@ -60,18 +56,6 @@ class UserController {
                 : this.logUserLogoutErr(userData, response));
     }
 
-    private getRestaurantsByCity = (request: express.Request, response: express.Response) => {
-        let userData = request.body.user;
-        let city = request.body.city;
-
-        userData.logged = true;
-        userModel.find(userData)
-            .then((users: Array<User>) => users.length !== 0
-                ? this.logRestaurantsOk(userData, city, response)
-                : this.logRestaurantsErr(userData, city, response))
-            .catch(() => response.json({ status: 'ERR', data: `User ${userData.username} is not authorized.` }));
-    }
-
     private getUserHistory = (request: express.Request, response: express.Response) => {
         let username = request.params.username;
 
@@ -86,41 +70,31 @@ class UserController {
     */
     private logUserCreatedOk(user: User, response: express.Response) {
         new logModel({ username: user.username, log: 'Usuario creado con exito' }).save();
-        response.json({ status: 'OK', data: user });
+        response.status(200).json({ status: 'OK', data: user });
     }
 
     private logUserLoginOk(user: User, response: express.Response) {
         const token: string = uuid();
         new logModel({ username: user.username, log: `Usuario logged in con token ${token}` }).save();
         this.updateUser(user, true, token);
-        response.json({ status: 'OK', data: { token: token, value: `User ${user.username} logged in now.` } });
+        response.status(200).json({ status: 'OK', data: { token: token, value: `User ${user.username} logged in now.` } });
     }
 
     private logUserLoginErr(user: any, response: express.Response) {
         new logModel({ username: user.username, log: `Usuario ${user.username} operacion login no permitida` }).save();
-        response.json({ status: 'ERR', data: { value: `User ${user.username} not logged in now.` } });
+        response.status(400).json({ status: 'ERR', data: { value: `User ${user.username} not logged in now.` } });
 
     }
 
     private logUserLogoutOk(user: User, response: express.Response) {
         new logModel({ username: user.username, log: `Usuario logged out con token ${user.token}` }).save();
         this.updateUser(user, false, 'NONE');
-        response.json({ status: 'OK', data: { value: `User ${user.username} logged out now.` } });
+        response.status(200).json({ status: 'OK', data: { value: `User ${user.username} logged out now.` } });
     }
 
     private logUserLogoutErr(user: any, response: express.Response) {
         new logModel({ username: user.username, log: `Usuario ${user.username} operacion logout no permitida` }).save();
-        response.json({ status: 'ERR', data: { value: `User ${user.username} not logged out now.` } });
-    }
-
-    private logRestaurantsOk(user: any, city: string, response: express.Response) {
-        new logModel({ username: user.username, log: `Usuario consulto por los restaurantes de la ciudad ${city}` }).save();
-        this.restaurantController.findRestaurantByCity(city, response);
-    }
-
-    private logRestaurantsErr(user: any, city: string, response: express.Response) {
-        new logModel({ username: user.username, log: `Usuario ${user.username} operacion consulta de restaurantes de la ciudad ${city}, no permitida` }).save();
-        response.json({ status: 'ERR', data: `User ${user.username} is not authorized.` })
+        response.status(400).json({ status: 'ERR', data: { value: `User ${user.username} not logged out now.` } });
     }
 
     private updateUser = (user: any, status: boolean, token: string) => {

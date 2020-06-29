@@ -5,7 +5,6 @@ import App from './application/app';
 import Credentials from './model/credentials';
 import UserController from './controller/user.controller';
 import { validate } from './utils/validator';
-import RestaurantController from './controller/restaurant.controller';
 
 const {
     MONGO_USER,
@@ -13,8 +12,6 @@ const {
     MONGO_DB,
     MONGO_PATH,
     MONGO_PARAMS,
-    SERVER_HOST,
-    API_KEY,
     PORT } = process.env;
 
 let credentials: Credentials = {
@@ -27,10 +24,8 @@ let credentials: Credentials = {
 
 validate(process.env);
 
-const restaurantController: RestaurantController = new RestaurantController(SERVER_HOST, API_KEY);
 const router: Router = express.Router();
-const controllers: Array<any> = [new UserController('/user', restaurantController, router)];
+const controllers: Array<any> = [new UserController('/user', router)];
 
-const app = new App(controllers, credentials, Number(PORT));
-
-app.listen();
+new App(controllers, credentials, Number(PORT))
+    .listen();
