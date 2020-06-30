@@ -90,7 +90,7 @@ Este método se consume por POST y en el body tiene la siguiente estructura:
 }
 ```
 
-Donde el valor de **username**, **pass** deben estar registrados previamente en la base de datos, el valor de **token** debe corresponder al que el servicio respondió en el momento de logearse, sin este valor el servicio responderá un error, en caso contrario el usuairo será correctamente deslogeado y quedará bloqueado para realizar mas operaciones en el servicio.
+Donde el valor de **username**, **pass** deben estar registrados previamente en la base de datos, el valor de **token** debe corresponder al que el servicio respondió en el momento de logearse, sin este valor el servicio responderá un error, en caso contrario el usuario será correctamente deslogeado y quedará bloqueado para realizar mas operaciones en el servicio.
 
 ### Consulta de restaurantes por ciudad.
 
@@ -98,7 +98,20 @@ Donde el valor de **username**, **pass** deben estar registrados previamente en 
 http://{url:{port}/user/restaurants
 ```
 
-Este método se consume por POST y en el body se
+Este método se consume por POST y en el body tiene la siguiente estructura:
+
+```
+{
+    "user":{
+        "username": "olme",
+        "pass": "passOlme",
+        "token": "cd7ba273-4927-4e0b-a58b-8bbfb0f62ada"
+    },
+    "city": "new york"
+}
+```
+
+Donde el valor de **username**, **pass** deben estar registrados previamente en la base de datos, el valor de **token** debe corresponder al que el servicio respondió en el momento de logearse, sin este valor el servicio responderá un error, en caso contrario el usuario será correctamente deslogeado y quedará bloqueado para realizar mas operaciones en el servicio. En el campo **city** se escribe el nombre de la ciudad de la que se desea buscar los restaurantes cercanos.
 
 ### Consulta de registro historico de usuario.
 
