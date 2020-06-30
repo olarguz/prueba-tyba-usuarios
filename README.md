@@ -100,7 +100,7 @@ http://{url:{port}/user/restaurants
 
 Este método se consume por POST y en el body se
 
-### Consulta de registro historico de usuario.
+### Consulta de registro historico de usuario. __Deprecated__
 
 Este endpoint es usado para que se pueda ver el histórico de operaciones realizadas por un usuario en el sistema.
 La firma del endpoint se presenta a continuacion:
@@ -110,6 +110,9 @@ http://{url}:{port}/user/history/:username
 ```
 
 Este método se consume por **GET**, la variable **username** debe ser reempladad por un usuario válido, en caso que se pase un usuario no valido la respuesta obtenida contendrá un valor de un arreglo vació en el campo data.
+
+#### Nota:
+Esta opción no está debidamente documentada en esta rama, debido a que se hizo una reescritura de la funcionalidad y no alcancé a completar el registro de las operaciones por parte del usuario.
 
 ## Ejecucion
 

@@ -9,6 +9,8 @@ COPY package.json .
 COPY package-lock.json .
 
 RUN mkdir application
+RUN mkdir components
+RUN mkdir components/restaurants
 RUN mkdir controller
 RUN mkdir model
 RUN mkdir utils
@@ -16,6 +18,7 @@ RUN mkdir utils
 COPY .env .
 COPY dist/server.js* ./
 COPY dist/application/app.js* application/
+COPY dist/components/restaurants/*.js components/restaurants/
 COPY dist/controller/*.js* controller/
 COPY dist/model/*.js* model/
 COPY dist/utils/*.js* utils/
