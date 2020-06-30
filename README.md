@@ -92,7 +92,7 @@ Este método se consume por POST y en el body tiene la siguiente estructura:
 
 Donde el valor de **username**, **pass** deben estar registrados previamente en la base de datos, el valor de **token** debe corresponder al que el servicio respondió en el momento de logearse, sin este valor el servicio responderá un error, en caso contrario el usuairo será correctamente deslogeado y quedará bloqueado para realizar mas operaciones en el servicio.
 
-### Consulta de restaurantes por ciudad.
+### Consulta de restaurantes por ciudad. __Deprecated__
 
 ```
 http://{url:{port}/user/restaurants
@@ -100,7 +100,10 @@ http://{url:{port}/user/restaurants
 
 Este método se consume por POST y en el body se
 
-### Consulta de registro historico de usuario. __Deprecated__
+#### Nota:
+Esta opción no está debidamente documentada en esta rama, debido a que se hizo una reescritura de la funcionalidad y no alcancé a completar el registro de las operaciones por parte del usuario.
+
+### Consulta de registro historico de usuario.
 
 Este endpoint es usado para que se pueda ver el histórico de operaciones realizadas por un usuario en el sistema.
 La firma del endpoint se presenta a continuacion:
@@ -110,9 +113,6 @@ http://{url}:{port}/user/history/:username
 ```
 
 Este método se consume por **GET**, la variable **username** debe ser reempladad por un usuario válido, en caso que se pase un usuario no valido la respuesta obtenida contendrá un valor de un arreglo vació en el campo data.
-
-#### Nota:
-Esta opción no está debidamente documentada en esta rama, debido a que se hizo una reescritura de la funcionalidad y no alcancé a completar el registro de las operaciones por parte del usuario.
 
 ## Ejecucion
 
