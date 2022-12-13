@@ -33,7 +33,7 @@
     "@types/mongoose": "^5.7.28",
     "dotenv": "^8.2.0",
     "envalid": "^6.0.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.9.20",
     "request-promise": "^4.2.5",
     "uuidv4": "^6.1.0"
